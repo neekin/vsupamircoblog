@@ -1,0 +1,2 @@
+class MircoblogsController < ApplicationController
+end
