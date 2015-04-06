@@ -1,0 +1,9 @@
+<%= form_for @user do |f| %>
+<%= f.label :username, "用户名"%>
+<%= f.text_field :username %>
+<%= f.label :password,"密 码" %>
+    <%=f.password_field :password %>
+    <%= f.label :password,"确认密码" %>
+    <%=f.password_field :password_confirmation %>
+    <%= f.submit "注册" %>
+<% end %>

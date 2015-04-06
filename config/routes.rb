@@ -10,6 +10,14 @@ Rails.application.routes.draw do
    post 'photos/uploadphoto' =>'photos#uploadphoto'
    post 'photos/photolist' =>'photos#photolist'
    post 'photos/showphoto' =>'photos#showphoto'
+
+  #user
+   get 'signup' => 'users#signup' , :as =>'signup'
+   get 'login'=> 'users#login', :as =>'login'
+   post 'create_login_session' => 'users#create_login_session'
+   get 'logout' =>'users#logout', :as =>'logout'
+   post 'avatar/uploadavatar'=>'users#avatar'
+   resources :users,only:[:create]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
