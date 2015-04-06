@@ -1,0 +1,79 @@
+// Place all the styles related to the mircoblogs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.talkbox {
+  margin: 20px;
+  padding: 10px;
+}
+
+#msgtxt {
+  max-width: 600px;
+  max-height: 120px;
+  width: 580px;
+  height: 120px;
+}
+
+.username {
+
+  height: 23px;
+  line-height: 23px;
+}
+
+.userpic img {
+  height: 60px;
+  width: 60px;
+
+}
+
+.usercnt {
+
+  min-height: 60px;
+}
+
+.userpic {
+  height: 70px;
+  width: 70px;
+  float: left;
+ img{border-radius: 50%;}
+}
+
+.shardlist {
+  padding: 20px;
+  ul {
+    list-style: none;
+  }
+  li {
+    margin: 20px;
+  }
+}
+
+.pubInfo {
+  .attime {
+    float: left;
+    margin-left:70px;
+  }
+  .commentbtn {
+    float: right;
+  }
+}
+.userinfo
+{
+
+ margin-left: 30px;
+  margin-top: 20px;
+  .useravatar{
+    display: inline-block;
+    vertical-align:top;
+    img
+    {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+    }
+  }
+  .username
+  {
+    display: inline-block;
+    vertical-align:top;
+  }
+}

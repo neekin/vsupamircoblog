@@ -1,0 +1,5 @@
+<ul>
+  <% photolist.each do |photo| %>
+  <li><div class="pp"></div><%= image_tag(photo.file_url(:small),:data=>{:photoid=>photo.id})%></li>
+   <% end %>
+</ul>

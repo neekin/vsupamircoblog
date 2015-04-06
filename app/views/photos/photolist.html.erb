@@ -1,0 +1,11 @@
+<div class="photo">
+  <div class="p">
+    <%= render partial: 'photos/showphoto',locals: {photo: @photolist.first} %>
+  </div>
+  <div class="ppp">
+    <%= render partial: 'photos/showphotolist',locals: {photolist: @photolist} %>
+  </div>
+</div>
+<div class="comments">
+  <%= render partial: 'comments/photocomments',locals: {photo: @photolist.first} %>
+</div>
