@@ -1,0 +1,14 @@
+// Place all the styles related to the photos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.comments
+{
+  #comment{
+    height: 60px;
+    width: 350px;
+    max-width:350px;
+    max-height: 60px;
+    min-width: 350px;
+    min-height: 60px;
+  }
+}

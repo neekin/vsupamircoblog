@@ -1,16 +1,11 @@
-
-<% comments.each do |comment| %>
 <li>
   <div class="mesbox">
     <div class="userpic"><img src="<%= image_url 'head.jpg' %>" alt=""/></div>
     <div class="username"><strong><a href="">neekin</a> </strong></div>
     <div class="usercnt"><%= comment.comment%></div>
     <div class="pubInfo">
-      <div class="attime"><%= comment.creata_at_time%></div>
-      <div class="commentbtn">评论</div>
+      <div class="attime"><%= comment.created_at%></div>
     </div>
   </div>
   <hr/>
 </li>
-
-<% end %>

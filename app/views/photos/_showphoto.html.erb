@@ -1,2 +1,2 @@
-<%= image_tag(photo.file_url,:data=>{:photoid=>photo.id}) if photo.file %>
+<%= image_tag(photo.file_url(:big),:data=>{:photoid=>photo.id}) if photo.file %>
 <div class="setbookcover"></div>

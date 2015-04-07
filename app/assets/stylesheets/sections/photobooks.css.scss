@@ -115,7 +115,8 @@
     width: 350px;
     height: 800px;
     display: inline-block;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y : visible;
     background: #fff;
     vertical-align: top;
   }

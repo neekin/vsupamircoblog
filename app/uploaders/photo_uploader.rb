@@ -19,7 +19,9 @@ class PhotoUploader < CarrierWave::Uploader::Base
    def cache_dir
      "#{Rails.root}/tmp/uploads"
    end
-
+   version :big do
+     process :resize_to_limit => [800, 800]
+   end
    version :thumb do
      process :resize_to_limit => [360, 360]
    end

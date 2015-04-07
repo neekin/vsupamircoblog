@@ -14,6 +14,13 @@
             <div class="qq-upload-button-selector qq-upload-button">
               <div>选择相片</div>
             </div>
+            <span>
+            <select id="photobookid">
+              <% photobook.each do |photob| %>
+              <option value="<%= photob.id%>"><%= photob.bookname%></option>
+              <% end %>
+            </select></span>
+
     <span class="qq-drop-processing-selector qq-drop-processing">
       <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
     </span>

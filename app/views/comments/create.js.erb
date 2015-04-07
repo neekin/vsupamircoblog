@@ -1,0 +1,24 @@
+<% if @comment.photo.id %>
+
+var html = "<%= j render partial:'comments/photocomment',locals: {comment:@comment} %>";
+var obj = $(".shardlist ul li:first-child");
+if (obj.length > 0) {
+    obj.before(html);
+}
+else {
+    obj = $(".shardlist ul");
+    obj.html(html);
+}
+
+<% elsif @comment.mircoblog.id %>
+
+var html = "<%= j render partial:'comments/mircoblogcomment',locals:{comment:@comment} %>";
+var msgbox = $(".comments<%=@comment.mircoblog.id%> .msgbox:first");
+if (msgbox.length > 0) {
+    msgbox.before(html);
+}
+else {
+    msgbox = $(".comments<%=@comment.mircoblog.id%>");
+    msgbox.html(html);
+}
+<% end %>

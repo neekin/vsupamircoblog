@@ -18,6 +18,13 @@ Rails.application.routes.draw do
    get 'logout' =>'users#logout', :as =>'logout'
    post 'avatar/uploadavatar'=>'users#avatar'
    resources :users,only:[:create]
+  #mircoblog
+   resources  :mircoblogs
+   get 'mircoblog/:id' => 'mircoblogs#showformid'
+   #comment
+   resources :comments
+   post 'comments/photocomments' =>'comments#photocomments'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

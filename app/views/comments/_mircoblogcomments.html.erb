@@ -1,0 +1,27 @@
+<div class="collapse" id="collComment<%=mircoblog.id%>" data-mircoblogid="<%=mircoblog.id%>">
+  <div class="well">
+    <div class="top_c_tx5">
+      评论本条微博,<a href="mircoblog/<%=mircoblog.id%>">共有<%=mircoblog.comments.count%>条评论</a>
+    </div>
+    <% if current_user%>
+        <%= form_for(Comment.new(:user_id=>current_user.id,:mircoblog_id =>mircoblog.id),remote:true) do |c| %>
+            <div class="cont">
+            <%= c.text_area :comment ,:class=>"msgtxt"%>
+              </div>
+            <%=c.hidden_field :mircoblog_id%>
+            <%=c.hidden_field :user_id%>
+            <div class="bot">
+              <button type="submit" class="btn btn-success btn-sm pull-right">评论</button>
+            </div>
+        <% end %>
+    <% end %>
+    <hr/>
+    <div class="comments<%=mircoblog.id%>">
+    <% mircoblog.comments.reverse.take(2).each do |comment| %>
+        <%= render partial:'comments/mircoblogcomment',locals:{comment:comment}%>
+    <% end%>
+    </div>
+    <hr/>
+    <div class="pages">查看所有评论</div>
+  </div>
+</div>

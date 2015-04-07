@@ -1,31 +1,31 @@
 <%= render partial:'photobooks/photobooklist', locals: {photobook: @photobook} %>
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".showphotos">
-  Launch demo modal
-</button>
+<%if current_user&&current_user.id==1%>
 <%= link_to "创建相册", "#", class: "btn btn-primary btn-sm", :data => {:toggle => "modal", :target => ".createphotobookModal"} %>
-    <%= link_to "上传照片", "#", class: "btn btn-primary btn-sm", :data => {:toggle => "modal", :target => ".uploadphotoModal"} %>
-    <%= render partial: 'photos/photos' %>
-    <%= render partial: 'photos/uploadphotos' %>
-        <%= form_tag "/createphotobook" do %>
-            <div class="modal fade createphotobookModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <a class="close" data-dismiss="modal" aria-hidden="true">x</a>
-                    <h4 class="modal-title">创建相册</h4>
-                  </div>
-                  <div class="modal-body">
-                    <div>相册名<%= text_field_tag :bookname, params[:bookname], :class => "", :style => "width:200px" %></div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default"
-                            data-dismiss="modal"> 关闭
-                    </button>
-                    <%= submit_tag "添加", :class => "submit-issue-button btn btn-primary" %></div>
-                </div>
+<%= link_to "上传照片", "#", class: "btn btn-primary btn-sm", :data => {:toggle => "modal", :target => ".uploadphotoModal"} %>
+    <%= render partial: 'photos/uploadphotos' ,locals:{photobook: @photobook}%>
+    <%= form_tag "/createphotobook" do %>
+        <div class="modal fade createphotobookModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <a class="close" data-dismiss="modal" aria-hidden="true">x</a>
+                <h4 class="modal-title">创建相册</h4>
               </div>
+              <div class="modal-body">
+                <div>相册名<%= text_field_tag :bookname, params[:bookname], :class => "", :style => "width:200px" %></div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal"> 关闭
+                </button>
+                <%= submit_tag "添加", :class => "submit-issue-button btn btn-primary" %></div>
             </div>
-        <% end %>
+          </div>
+        </div>
+    <% end %>
+<% end %>
+    <%= render partial: 'photos/photos' %>
+
         <script>
             $(function () {
                 $(".showphoto").on("click", function () {
@@ -60,11 +60,10 @@
                     show.modal();
 
                 });
-                $('.showphotos').on('show.bs.modal', function (e) {
-
-                });
                 $('.showphotos').on("hide.bs.modal", function (e) {
                     $('.photo').unbind();
+                    $(this).find(".modal-body").html("");
+
                 });
                 function createUploader() {
                     var thumbnailuploader = new qq.FineUploader({
@@ -90,7 +89,7 @@
                     $("#edit-file-upload-trigger").click(function () {
                         thumbnailuploader.setParams({
                             authenticity_token: "<%= form_authenticity_token.to_s %>",
-                            photobook_id: 1
+                            photobook_id: $("#photobookid").val()
                         });
                         thumbnailuploader.uploadStoredFiles();
                     });
@@ -144,8 +143,15 @@
                         success: function (data) {
                             var p = $(".showphotos .photo").find(".p");
                             p.html(data);
-                            console.log(id);
                             setactive(id);
+                            $.ajax({url:"comments/photocomments",
+                            type:'post',
+                                data:{photo_id:id},
+                                success:function(data){
+                                    var c = $(".showphotos .comments").html(data);
+                                },
+                                dataType:'html'
+                            });
                         },
                         dataType: 'html'
                     });

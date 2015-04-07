@@ -5,15 +5,13 @@
       <a href="#"  class="showphoto" data-photobookid="<%=photob.id%>">
         <div class="bookcover">
           <div class="pic">
-            <%= image_tag  photob.photos.first.file_url(:thumb) || photob.bookcover%>
-
+            <%= image_tag(photob.photos.first.file_url(:thumb)) if photob.photos.first%>
           </div>
         </div>
         <div class="bookname"><%= photob.bookname%></div>
       </a>
     </li>
-
-        <% end %>
+  <% end %>
     <div class="justify_fix"></div>
   </ul>
 </div>
