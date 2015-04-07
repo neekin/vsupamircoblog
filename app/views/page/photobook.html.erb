@@ -25,195 +25,34 @@
     <% end %>
 <% end %>
     <%= render partial: 'photos/photos' %>
-
-        <script>
-            $(function () {
-                $(".showphoto").on("click", function () {
-                    var id = $(this).attr("data-photobookid");
-                    var show = $('.showphotos');
-                    $.ajax({
-                        url: "/photos/photolist",
-                        type: "post",
-                        data: {photobook_id: id},
-                        success: function (data) {
-                            var mbody = show.find(".modal-body");
-                            mbody.html(data);
-                            var img =  $(".p").children('img').attr("data-photoid");
-                            var imgs = $(".ppp img[data-photoid='"+img+"']");
-                            imgs.prev().addClass("active");
-                            bind();
-                        },
-                        dataType: 'html'
-                    });
-//                    $.ajax({
-//                        url: "/photos/showphotolist",
-//                        type: "post",
-//                        data: {photobook_id: id},
-//                        success: function (data) {
-//                            show.find(".ppp").html(data);
-//                            var img =  $(".p").children('img').attr("data-photoid");
-//                            console.log(img);
-
-//                        },
-//                        dataType: 'html'
-//                    });
-                    show.modal();
-
-                });
-                $('.showphotos').on("hide.bs.modal", function (e) {
-                    $('.photo').unbind();
-                    $(this).find(".modal-body").html("");
-
-                });
-                function createUploader() {
-                    var thumbnailuploader = new qq.FineUploader({
-                        element: document.getElementById('thumbnail-fine-uploader'),
-                        template: "qq-simple-thumbnails-template",
-                        request: {
-                            endpoint: '/photos/uploadphoto'
-                        },
-                        autoUpload: false,
-                        thumbnails: {
-                            placeholders: {
-                                waitingPath: "/image/waiting-generic.png",
-                                notAvailablePath: "/image/not_available-generic.png"
-                            }
-                        },
-                        validation: {
-                            allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
-                        },
-                        editFilename: {
-                            enabled: true
-                        }
-                    });
-                    $("#edit-file-upload-trigger").click(function () {
-                        thumbnailuploader.setParams({
-                            authenticity_token: "<%= form_authenticity_token.to_s %>",
-                            photobook_id: $("#photobookid").val()
-                        });
-                        thumbnailuploader.uploadStoredFiles();
-                    });
+<script>
+    function createUploader() {
+        var thumbnailuploader = new qq.FineUploader({
+            element: document.getElementById('thumbnail-fine-uploader'),
+            template: "qq-simple-thumbnails-template",
+            request: {
+                endpoint: '/photos/uploadphoto'
+            },
+            autoUpload: false,
+            thumbnails: {
+                placeholders: {
+                    waitingPath: "/image/waiting-generic.png",
+                    notAvailablePath: "/image/not_available-generic.png"
                 }
-                $(".uploadphotoModal").on("show.bs.modal", function () {
-                    createUploader();
-                });
+            },
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+            },
+            editFilename: {
+                enabled: true
+            }
+        });
+        $("#edit-file-upload-trigger").click(function () {
+            thumbnailuploader.setParams({
+                authenticity_token: "<%= form_authenticity_token.to_s %>",
+                photobook_id: $("#photobookid").val()
             });
-
-            function bind() {
-                $(".pp").on('click', function (e) {
-                    var offset, x, f, p;
-                    f = $(this);
-                    p = f.parent().parent().parent();
-                    $(".pp").removeClass("active");
-                    f.addClass("active");
-                    offset = f.offset();
-                    x = e.pageX - p.offset().left;
-                    var s = Math.ceil(x / f.width());
-                    var f2 = f.parent().parent();
-                    var left = parseInt(f2.css("left"));
-                    var z;
-                    if (s > 6) {
-                        z = -(s - 1) * f.width() + left;
-                        var pp;
-                        if ($(".pp").length > 10) {
-                            var pp = ($(".pp").length - 10) * f.width();
-                        } else {
-                            pp = 0;
-                        }
-                        if ((left + z) < pp) {
-                            z = pp;
-                        }
-                    }
-                    else if (s <= 4 && left < 0) {
-                        z = (s + 1) * f.width() + left;
-                        if (z > 0) {
-                            z = 0;
-                        }
-                    }
-                    f2.animate({left: z}, 500);
-                    showPhoto(f.next().attr("data-photoid"));
-                    e.stopPropagation();
-                });
-
-                function showPhoto(id) {
-                    $.ajax({
-                        url: "/photos/showphoto",
-                        type: "post",
-                        data: {photo_id: id},
-                        success: function (data) {
-                            var p = $(".showphotos .photo").find(".p");
-                            p.html(data);
-                            setactive(id);
-                            $.ajax({url:"comments/photocomments",
-                            type:'post',
-                                data:{photo_id:id},
-                                success:function(data){
-                                    var c = $(".showphotos .comments").html(data);
-                                },
-                                dataType:'html'
-                            });
-                        },
-                        dataType: 'html'
-                    });
-                }
-
-                $('.photo').mousemove(function (event) {
-                    var offset, p, x;
-                    offset = $(this).offset();
-                    x = event.pageX - offset.left;
-                    p = $(this).children('.p');
-                    if (x < 400) {
-                        p.addClass('left');
-                        p.removeClass('right');
-                    } else if (x > 400) {
-                        p.addClass('right');
-                        p.removeClass('left');
-                    }
-                });
-
-                    var prev, next;
-                    prev = function () {
-                        var p = $(".active").parent();
-                        var pp = p.prev();
-                       if(pp.length==0)
-                       {
-                           return;
-                       }
-                        else
-                       {
-                           var photoid =pp.find('img').attr("data-photoid");
-                           showPhoto(photoid);
-
-                       }
-                    };
-                    next = function () {
-
-                        var p = $(".active").parent();
-                        var pn = p.next();
-                        if(pn.length==0)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            var photoid =pn.find('img').attr("data-photoid");
-                            showPhoto(photoid);
-
-                        }
-                    };
-                    $('.photo').click(function (event) {
-                        var offset, x;
-                        offset = $(this).offset();
-                        x = event.pageX - offset.left;
-                        if (x < 400) {
-                            prev();
-                        } else if (x > 400) {
-                            next();
-                        }
-                    });
-                }
-                function setactive(pid){
-                    $(".pp").removeClass("active");
-                    $(".ppp img[data-photoid='"+pid+"']").prev().addClass("active");
-                }
-        </script>
+            thumbnailuploader.uploadStoredFiles();
+        });
+    }
+</script>
