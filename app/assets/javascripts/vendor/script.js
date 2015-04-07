@@ -36,32 +36,33 @@ function bind() {
         p = f.parent().parent().parent();
         $(".pp").removeClass("active");
         f.addClass("active");
-        offset = f.offset();
+
         x = e.pageX - p.offset().left;
-        var s = Math.ceil(x / f.width());
+        var index = Math.ceil(x / f.width());
         var f2 = f.parent().parent();
         var left = parseInt(f2.css("left"));
         var z=0;
-        if (s > 6) {
+        if (index > 5) {
 
-            z = (1-s)* f.width() +left;
-            console.log("left"+left);
-            console.log("上面z:"+z);
-            var pp;
-            if ($(".pp").length > 10) {
-                 pp = ($(".pp").length - 10) * f.width();
-            } else {
-                pp = 0;
-            }
+            z = (1-index)* f.width() +left;
+           if($(".pp").length>10)
+           {
+             var allwidth = ($(".pp").length -10)* f.width();
+              if(Math.abs(z)>allwidth)
+              {
+                  z = -allwidth;
+              }
+           }else if($(".pp").length<10)
+           {
+              z=0;
+           }
 
-           console.log(left+pp);
         }
-         if (s <= 4 && left < 0) {
-            z = (s + 1) * f.width() + left;
+         if (index <= 5) {
+            z = (index - 1) * f.width() + left;
             if (z > 0) {
                 z = 0;
             }
-            console.log("z:"+z)
         }
         f2.animate({left: z}, 500);
         showPhoto(f.next().attr("data-photoid"));
@@ -115,6 +116,13 @@ function bind() {
         else
         {
             var photoid =pp.find('img').attr("data-photoid");
+            var f2 = pp.parent();
+            var left = parseInt(f2.css("left"));
+            if(left<0)
+            {
+                var index = left + p.width();
+                f2.css('left',index);
+            }
             showPhoto(photoid);
 
         }
@@ -129,6 +137,18 @@ function bind() {
         }
         else
         {
+            var f2 = p.parent();
+            var left = parseInt(f2.css("left"));
+           // var  x = pageX -pn.offset().left;
+           // var index = Math.ceil(x / p.width());
+
+            var index = left - p.width();
+            var allwidth =$(".pp").length * p.width();
+            if(Math.abs(index)<allwidth)
+            {
+                f2.css('left',index);
+            }
+
             var photoid =pn.find('img').attr("data-photoid");
             showPhoto(photoid);
 
