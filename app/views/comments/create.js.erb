@@ -1,4 +1,4 @@
-<% if @comment.photo.id %>
+<% if @comment.photo %>
 
 var html = "<%= j render partial:'comments/photocomment',locals: {comment:@comment} %>";
 var obj = $(".shardlist ul li:first-child");
@@ -10,7 +10,7 @@ else {
     obj.html(html);
 }
 
-<% elsif @comment.mircoblog.id %>
+<% elsif @comment.mircoblog %>
 
 var html = "<%= j render partial:'comments/mircoblogcomment',locals:{comment:@comment} %>";
 var msgbox = $(".comments<%=@comment.mircoblog.id%> .msgbox:first");

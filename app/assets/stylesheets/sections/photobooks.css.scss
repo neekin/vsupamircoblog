@@ -61,6 +61,7 @@
     background: #000;
     vertical-align: top;
     background: rgba(0, 0, 0, 0.9);
+    text-align: center;
     .p {
       line-height: 800px;
 
@@ -107,7 +108,7 @@
       }
     }
     img {
-      width: 100%;
+      max-width: 800px;
       max-height: 800px;
     }
   }

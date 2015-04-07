@@ -1,24 +1,4 @@
 $(function () {
-    $(".showphoto").on("click", function () {
-        var id = $(this).attr("data-photobookid");
-        var show = $('.showphotos');
-        $.ajax({
-            url: "/photos/photolist",
-            type: "post",
-            data: {photobook_id: id},
-            success: function (data) {
-                var mbody = show.find(".modal-body");
-                mbody.html(data);
-                var img =  $(".p").children('img').attr("data-photoid");
-                var imgs = $(".ppp img[data-photoid='"+img+"']");
-                imgs.prev().addClass("active");
-                bind();
-            },
-            dataType: 'html'
-        });
-        show.modal();
-
-    });
     $('.showphotos').on("hide.bs.modal", function (e) {
         $('.photo').unbind();
         $(this).find(".modal-body").html("");
@@ -59,7 +39,7 @@ function bind() {
 
         }
          if (index <= 5) {
-            z = (index - 1) * f.width() + left;
+            z = (10-index) * f.width() + left;
             if (z > 0) {
                 z = 0;
             }
