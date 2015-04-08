@@ -57,6 +57,19 @@ function bind() {
             p.addClass('right');
             p.removeClass('left');
         }
+        $(".setbookcover").css("display",'block');
+    });
+    $('.photo').mouseout(function (event) {
+
+       var p= $(this).children('.p');
+        p.removeClass('left');
+        p.removeClass('right');
+        $(".setbookcover").css("display",'none');
+    });
+    $(".setbookcover").on('click',function(e){
+
+        alert('设置成功');
+        e.stopPropagation();
     });
 
     var prev, next;
@@ -74,7 +87,7 @@ function bind() {
         changephoto(pn);
 
     };
-    $('.photo').click(function (event) {
+    $('.p').on('click',function (event) {
         var offset, x;
         offset = $(this).offset();
         x = event.pageX - offset.left;

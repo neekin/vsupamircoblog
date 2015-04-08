@@ -56,6 +56,20 @@
      .right{
        cursor: url(/image/pic_next.cur), auto;
      }
+  .setbookcover{
+    height: 32px;
+    width: 80px;
+    background: rgba(245,245,245,0.3);
+    line-height: 32px;
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    top:0;
+    margin-top: 15px;
+    left: 740px;
+    display: none;
+  }
+
   .closebutton{
 
     position: absolute;
@@ -88,15 +102,6 @@
     .p {
       line-height: 800px;
 
-    }
-    .setbookcover
-    {
-      width: 80px;
-      height: 60px;
-
-      position: absolute;
-      top: 15px;
-      right: 382px;
     }
     .ppp{
       height: 80px;
