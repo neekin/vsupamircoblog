@@ -1,0 +1,39 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.users-signup
+{
+
+  .wellopacity{
+    margin: 0 auto;
+    width: 460px;
+
+    background: rgba(237, 246, 253, 0.8);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#CCEDF6FD', endColorstr='#CCEDF6FD');
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #fff;
+    opacity: 0.9;
+    -webkit-box-shadow: 10px 6px 30px -2px rgba(0,0,0,0.8);
+    -moz-box-shadow: 10px 6px 30px -2px rgba(0,0,0,0.8);
+    box-shadow: 10px 6px 30px -2px rgba(0,0,0,0.8);
+  }
+  .error {
+
+    margin: 5px 0 9px 0;
+    color: red;
+  }
+
+ a{
+
+   font-size: 10px;
+ }
+
+}
+.users-create
+{
+@extend .users-signup
+}
+.users-login{
+  @extend .users-signup
+}

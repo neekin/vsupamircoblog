@@ -1,5 +1,5 @@
 <ul>
-  <% photolist.each do |photo| %>
-  <li><div class="pp"></div><%= image_tag(photo.file_url(:small),:data=>{:photoid=>photo.id})%></li>
+  <% photolist.each_with_index do  |photo, index| %>
+  <li><div class="pp" data-index="<%=index%>"></div><%= image_tag(photo.file_url(:small),:data=>{:photoid=>photo.id,:imgsrc=>photo.file_url(:big)})%></li>
    <% end %>
 </ul>

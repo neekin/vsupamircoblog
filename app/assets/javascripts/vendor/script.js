@@ -1,75 +1,49 @@
-$(function () {
-    $('.showphotos').on("hide.bs.modal", function (e) {
-        $('.photo').unbind();
-        $(this).find(".modal-body").html("");
-
-    });
-    $(".uploadphotoModal").on("show.bs.modal", function () {
-        createUploader();
-    });
-});
 
 function bind() {
     $(".pp").on('click', function (e) {
-        var offset, x, f, p;
-        f = $(this);
-        p = f.parent().parent().parent();
-        $(".pp").removeClass("active");
-        f.addClass("active");
-
-        x = e.pageX - p.offset().left;
-        var index = Math.ceil(x / f.width());
-        var f2 = f.parent().parent();
-        var left = parseInt(f2.css("left"));
-        var z=0;
-        if (index > 5) {
-
-            z = (1-index)* f.width() +left;
-           if($(".pp").length>10)
-           {
-             var allwidth = ($(".pp").length -10)* f.width();
-              if(Math.abs(z)>allwidth)
-              {
-                  z = -allwidth;
-              }
-           }else if($(".pp").length<10)
-           {
-              z=0;
-           }
-
-        }
-         if (index <= 5) {
-            z = (10-index) * f.width() + left;
-            if (z > 0) {
-                z = 0;
-            }
-        }
-        f2.animate({left: z}, 500);
-        showPhoto(f.next().attr("data-photoid"));
+        changephoto($(this));
         e.stopPropagation();
     });
 
-    function showPhoto(id) {
+    function changephoto(e)
+    {
+        var pp = e;
+        var max = -($(".pp").length * pp.width() - pp.width()*10);
+        showPhoto(pp.next());
+        var nowindex = $('.active').attr('data-index');
+        var z =-nowindex * pp.width() + pp.width()*6;
+        var f2 = pp.parents('ul:first');
+        if(z>0)
+        {
+            z=0;
+        }
+        else
+        {
+
+            z= max;
+        }
+
+        f2.animate({left: z}, 100);
+    }
+
+    function showPhoto(e) {
+        var src = e.attr('data-imgsrc')
+        var p = $(".showphotos .photo").find(".p");
+        p.html('<img src="' + src + '">');
+        var id = e.attr('data-photoid');
+        setactive(id);
         $.ajax({
-            url: "/photos/showphoto",
-            type: "post",
+            url: "comments/photocomments",
+            type: 'post',
             data: {photo_id: id},
             success: function (data) {
-                var p = $(".showphotos .photo").find(".p");
-                p.html(data);
-                setactive(id);
-                $.ajax({url:"comments/photocomments",
-                    type:'post',
-                    data:{photo_id:id},
-                    success:function(data){
-                        var c = $(".showphotos .comments").html(data);
-                    },
-                    dataType:'html'
-                });
+                $(".showphotos .comments").html(data);
             },
             dataType: 'html'
         });
     }
+
+
 
     $('.photo').mousemove(function (event) {
         var offset, p, x;
@@ -88,51 +62,17 @@ function bind() {
     var prev, next;
     prev = function () {
         var p = $(".active").parent();
-        var pp = p.prev();
-        if(pp.length==0)
-        {
-            return;
-        }
-        else
-        {
-            var photoid =pp.find('img').attr("data-photoid");
-            var f2 = pp.parent();
-            var left = parseInt(f2.css("left"));
-            if(left<0)
-            {
-                var index = left + p.width();
-                f2.css('left',index);
-            }
-            showPhoto(photoid);
-
-        }
+        var pp = p.prev().find('.pp');
+        if(pp.length)
+         changephoto(pp);
     };
     next = function () {
 
         var p = $(".active").parent();
-        var pn = p.next();
-        if(pn.length==0)
-        {
-            return;
-        }
-        else
-        {
-            var f2 = p.parent();
-            var left = parseInt(f2.css("left"));
-           // var  x = pageX -pn.offset().left;
-           // var index = Math.ceil(x / p.width());
+        var pn = p.next().find('.pp');
+        if(pn.length)
+        changephoto(pn);
 
-            var index = left - p.width();
-            var allwidth =$(".pp").length * p.width();
-            if(Math.abs(index)<allwidth)
-            {
-                f2.css('left',index);
-            }
-
-            var photoid =pn.find('img').attr("data-photoid");
-            showPhoto(photoid);
-
-        }
     };
     $('.photo').click(function (event) {
         var offset, x;

@@ -1,9 +1,38 @@
-<%= form_for @user do |f| %>
-<%= f.label :username, "用户名"%>
-<%= f.text_field :username %>
-<%= f.label :password,"密 码" %>
-    <%=f.password_field :password %>
-    <%= f.label :password,"确认密码" %>
+<div class="wellopacity">
+<div class=" signupwell">
+<%= form_for(@user ,:html=>{:class=>'form-horizontal'}) do |f| %>
+    <div class="form-group">
+    <%= f.label :username, "用户名:" ,:class=>'control-label col-sm-4'%>
+      <div class="col-sm-8">
+    <%= f.text_field :username %>
+      </div>
+    <% if @user.errors[:username].any? %>
+        <div class="error"><%= @user.errors[:username][0] %></div>
+    <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password,"密 码:" ,:class=>'control-label col-sm-4'%>
+      <div class="col-sm-8">
+         <%=f.password_field :password %>
+      </div>
+         <% if @user.errors[:password].any? %>
+          <div class="error"><%= @user.errors[:password][0] %></div>
+    <% end %>
+    </div>
+    <div class="form-group">
+    <%= f.label :password,"确认密码:",:class=>'control-label col-sm-4' %>
+      <div class="col-sm-8">
     <%=f.password_field :password_confirmation %>
-    <%= f.submit "注册" %>
+      </div>
+    <% if @user.errors[:password_confirmation].any? %>
+        <div class="error"><%= @user.errors[:password_confirmation][0] %></div>
+    <% end %>
+    </div>
+      <div class="center">
+    <%= f.submit "注册" ,:class=>'btn btn-sm btn-primary' %>
+      </div>
+      <%= link_to "已有账号,登陆", login_path %>
+      <%= link_to "忘记密码?", signup_path ,:target=>'_blank' %>
 <% end %>
+</div>
+</div>

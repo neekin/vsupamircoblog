@@ -1,0 +1,15 @@
+zh-CN:
+  navbar:
+    about: 关于
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              blank: 用户名不能为空
+              taken: 用户已经存在
+            password:
+              blank: 密码不能为空
+            password_confirmation:
+              confirmation: 两次输入密码不相同

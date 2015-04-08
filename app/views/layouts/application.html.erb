@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>轻博客</title>
+  <title>轻微博</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
   <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
-<body>
+<body class="<%= params[:controller] + '-' + params[:action] %>">
 <%= render partial:'page/header' %>
 <%= yield %>
 <%= render partial:'page/footer' %>

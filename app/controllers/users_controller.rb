@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def signup
     @user=User.new
   end
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -15,13 +16,18 @@ class UsersController < ApplicationController
   def create_login_session
     user = User.find_by_username(params[:username])
     if user && user.authenticate(params[:password])
-      #cookies.permanent[:auth_token] =user.auth_token //持久化保存
-      cookies[:auth_token] = user.auth_token   #临时性保存 类似 session
+      if params[:rememberme]
+        cookies.permanent[:auth_token] =user.auth_token #持久化保存
+      else
+        cookies[:auth_token] = user.auth_token #临时性保存 类似 session
+      end
       redirect_to :root
     else
+      flash.notice = "用户名密码错误!"
       redirect_to :login
     end
   end
+
   def login
 
   end

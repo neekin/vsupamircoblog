@@ -26,6 +26,40 @@
 <% end %>
     <%= render partial: 'photos/photos' %>
 <script>
+
+    $(function () {
+        $('.showphotos').on("hide.bs.modal", function (e) {
+            $('.photo').unbind();
+            $(this).find(".modal-body").html("");
+
+        });
+        $(".uploadphotoModal").on("show.bs.modal", function () {
+
+            createUploader();
+        });
+
+    });
+    $(".showphoto").on("click", function () {
+        var id = $(this).attr("data-photobookid");
+        var show = $('.showphotos');
+        $.ajax({
+            url: "/photos/photolist",
+            type: "post",
+            data: {photobook_id: id},
+            success: function (data) {
+                var mbody = show.find(".modal-body");
+                mbody.html(data);
+                var img =  $(".p").children('img').attr("data-photoid");
+                var imgs = $(".ppp img[data-photoid='"+img+"']");
+                imgs.prev().addClass("active");
+                bind();
+            },
+            dataType: 'html'
+        });
+        show.modal();
+
+    });
+
     function createUploader() {
         var thumbnailuploader = new qq.FineUploader({
             element: document.getElementById('thumbnail-fine-uploader'),
@@ -55,24 +89,4 @@
             thumbnailuploader.uploadStoredFiles();
         });
     }
-    $(".showphoto").on("click", function () {
-        var id = $(this).attr("data-photobookid");
-        var show = $('.showphotos');
-        $.ajax({
-            url: "/photos/photolist",
-            type: "post",
-            data: {photobook_id: id},
-            success: function (data) {
-                var mbody = show.find(".modal-body");
-                mbody.html(data);
-                var img =  $(".p").children('img').attr("data-photoid");
-                var imgs = $(".ppp img[data-photoid='"+img+"']");
-                imgs.prev().addClass("active");
-                bind();
-            },
-            dataType: 'html'
-        });
-        show.modal();
-
-    });
 </script>

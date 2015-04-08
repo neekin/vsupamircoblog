@@ -4,11 +4,13 @@
         <li><a href="/login">登录</a></li>
         <li><a href="/signup">注册</a></li>
     <% else %>
-        <%= link_to current_user.username, "/info" %>
-        <%= link_to "登出", logout_path %>
+       <li><%= link_to current_user.username, "/info" %></li>
+        <li><%= link_to "登出", logout_path %></li>
     <% end %>
     <li><%= link_to "相册", photobook_path %></li>
   </ul>
+
+
 
 </div>
 <div class="jumbotron ccccc">

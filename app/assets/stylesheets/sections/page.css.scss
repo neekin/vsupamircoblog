@@ -1,43 +1,30 @@
-.content{
- margin: 0px auto;
-  width: 970px;
-  background-color: #EDF6FD;
-  background: rgba(237,246,253,0.8);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#CCEDF6FD', endColorstr='#CCEDF6FD');
-}
-.mircoblogs
-{
-  width: 640px;
- min-height: 1200px;
-  display: inline-block;
-  vertical-align:top;
-  background: #fff;
 
-}
-.side
-{
-  width: 320px;
-  height: 400px;
-  display: inline-block;
-  vertical-align:top;
-}
-body
-{
-  background: #73CFF1 url(/assets/bg.jpg) fixed center top repeat-x;
-}
-.ccccc
-{
+.ccccc {
   background-color: #EDF6FD;
-  background: rgba(237,246,253,0.8);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#CCEDF6FD', endColorstr='#CCEDF6FD');
+  background: rgba(237, 246, 253, 0.8);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#CCEDF6FD', endColorstr='#CCEDF6FD');
 }
-.topmenu
-{
-  ul{
-    list-style: none;
-
+.page-welcome {
+  .content {
+    margin: 0px auto;
+    width: 970px;
+    background-color: #EDF6FD;
+    background: rgba(237, 246, 253, 0.8);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#CCEDF6FD', endColorstr='#CCEDF6FD');
   }
-  li{
+  .mircoblogs {
+    width: 640px;
+    min-height: 1200px;
     display: inline-block;
+    vertical-align: top;
+    background: #fff;
+
   }
+  .side {
+    width: 320px;
+    height: 400px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
 }
