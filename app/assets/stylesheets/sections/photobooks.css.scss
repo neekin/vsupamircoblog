@@ -53,6 +53,20 @@
      .right{
        cursor: url(/image/pic_next.cur), auto;
      }
+  .closebutton{
+
+    position: absolute;
+    margin-top: -30px;
+    right: 30px;
+  }
+  .closebutton i{
+    font-size: 30px;
+
+
+  }
+  .closebutton .close{
+    opacity:.8;
+  }
 
   .photo {
     height: 800px;
