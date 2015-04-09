@@ -5,7 +5,7 @@
       <a href="#"  class="showphoto" data-photobookid="<%=photob.id%>">
         <div class="bookcover">
           <div class="pic">
-            <%= image_tag(photob.photos.first.file_url(:thumb)) if photob.photos.first%>
+            <%=image_tag  photob.bookcover? ? photob.bookcover : photob.photos.first.file_url(:thumb) %>
           </div>
         </div>
         <div class="bookname"><%= photob.bookname%></div>

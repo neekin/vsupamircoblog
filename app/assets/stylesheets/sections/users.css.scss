@@ -16,6 +16,11 @@
     -webkit-box-shadow: 10px 6px 30px -2px rgba(0,0,0,0.8);
     -moz-box-shadow: 10px 6px 30px -2px rgba(0,0,0,0.8);
     box-shadow: 10px 6px 30px -2px rgba(0,0,0,0.8);
+    a{
+
+      font-size: 10px;
+    }
+
   }
   .error {
 
@@ -23,15 +28,12 @@
     color: red;
   }
 
- a{
-
-   font-size: 10px;
- }
 
 }
+
 .users-create
 {
-@extend .users-signup
+  @extend .users-signup
 }
 .users-login{
   @extend .users-signup

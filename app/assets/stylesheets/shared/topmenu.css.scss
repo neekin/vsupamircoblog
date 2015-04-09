@@ -1,10 +1,35 @@
-.topmenu
-{
-ul{
+.topmenu {
+  ul {
     list-style: none;
 
-}
-li{
+  }
+  li {
     display: inline-block;
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
 }
+
+.nav {
+  @extend .topmenu;
+  height: 30px;
+  width: 400px;
+  .navbtn {
+    float: right;
+    margin-top: -46px;
+    margin-right: 116px;
+  }
+  li {
+    font-size: 22px;
+    a {
+      color:#337ab7;
+    }
+    a:hover {
+      color: chocolate;
+    }
+  }
 }

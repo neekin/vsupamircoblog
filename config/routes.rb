@@ -10,6 +10,7 @@ Rails.application.routes.draw do
    post 'photos/uploadphoto' =>'photos#uploadphoto'
    post 'photos/photolist' =>'photos#photolist'
    post 'photos/showphoto' =>'photos#showphoto'
+   post 'photobooks/setbookcover'=>'photobooks#setbookcover'
 
   #user
    get 'signup' => 'users#signup' , :as =>'signup'

@@ -12,15 +12,14 @@ function bind() {
         showPhoto(pp.next());
         var nowindex = $('.active').attr('data-index');
         var z =-nowindex * pp.width() + pp.width()*6;
-        var f2 = pp.parents('ul:first');
+        var f2 = pp.parents('ul');
         if(z>0)
         {
             z=0;
         }
-        else
+        if(z<max)
         {
-
-            z= max;
+            z=max;
         }
 
         f2.animate({left: z}, 100);
@@ -42,8 +41,6 @@ function bind() {
             dataType: 'html'
         });
     }
-
-
 
     $('.photo').mousemove(function (event) {
         var offset, p, x;
@@ -68,7 +65,16 @@ function bind() {
     });
     $(".setbookcover").on('click',function(e){
 
-        alert('设置成功');
+
+        var cover = $(".active").next().attr("data-cover");
+        $.ajax({
+            url: "photobooks/setbookcover",
+            type: 'post',
+            data: {bookcover: cover,id:$("#photobookid").val()},
+            success: function () {
+               alert("设置成功");
+            }
+        });
         e.stopPropagation();
     });
 

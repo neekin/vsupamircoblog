@@ -1,8 +1,11 @@
 <div class="photo">
+  <input type="hidden" id="photobookid" value="<%= @photolist.first.photobook.id%>"/>
   <div class="p">
     <%= render partial: 'photos/showphoto',locals: {photo: @photolist.first} %>
   </div>
+  <%if current_user %>
 <div class="setbookcover">设为封面</div>
+<% end%>
   <div class="ppp">
     <%= render partial: 'photos/showphotolist',locals: {photolist: @photolist} %>
   </div>

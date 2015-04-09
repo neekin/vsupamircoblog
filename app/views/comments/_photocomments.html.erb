@@ -1,11 +1,16 @@
-<div>评论照片</div>
+
 <% if current_user%>
+    <div>评论照片</div>
     <%= form_for(Comment.new(:user_id=>current_user.id,:photo_id =>photo.id),remote:true) do |c| %>
         <%= c.text_area :comment ,:id=>"comment"%>
         <button type="submit" class="btn btn-success btn-sm pull-right">评论</button>
         <%=c.hidden_field :photo_id%>
         <%=c.hidden_field :user_id%>
     <% end %>
+
+    <% else %>
+    <div>登录评论照片</div>
+    <a href="/login" class="btn btn-primary btn-sm" >登录</a>
 <% end %>
 <div class="shardlist">
   <ul>

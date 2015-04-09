@@ -3,6 +3,15 @@
   background-color: #EDF6FD;
   background: rgba(237, 246, 253, 0.8);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#CCEDF6FD', endColorstr='#CCEDF6FD');
+  .subtitle
+  {
+    background: rgba(115, 207, 241, 0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#73cff1', endColorstr='#73cff1');
+    display: table;
+    padding: 10px;
+    color: white;
+
+  }
 }
 .page-welcome {
   .content {

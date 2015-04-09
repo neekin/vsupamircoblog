@@ -4,21 +4,26 @@
         <li><a href="/login">登录</a></li>
         <li><a href="/signup">注册</a></li>
     <% else %>
-       <li><%= link_to current_user.username, "/info" %></li>
+        <li><%= link_to current_user.username, "/info" %></li>
         <li><%= link_to "登出", logout_path %></li>
     <% end %>
-    <li><%= link_to "相册", photobook_path %></li>
   </ul>
-
-
-
 </div>
 <div class="jumbotron ccccc">
   <div class="container">
     <h1>Hello</h1>
 
-    <p>.........</p>
+    <div class="nav"><p>Nothing talk,Enjoy It!</p>
+      <div class="navbtn">
+        <ul>
+          <li><%= link_to '微博', root_path %></li>
+          <li><%= link_to '相册', photobook_path %></li>
+        </ul>
+      </div>
+    </div>
 
-    <p><a class="btn btn-primary btn-large">分享您的快乐</a></p>
+    <p class="subtitle">分享您的快乐</p>
+
+
   </div>
 </div>
