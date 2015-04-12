@@ -1,6 +1,9 @@
 class PageController < ApplicationController
   def welcome
-    @mircoblogs =  Mircoblog.all.reverse.take(10)
+    #@mircoblogs= Mircoblog.all.reverse.take(10)
+
+    #render :action=>"getMircoblogs"
+
   end
 
   def photobook

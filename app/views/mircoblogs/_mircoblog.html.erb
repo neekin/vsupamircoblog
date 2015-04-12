@@ -1,10 +1,10 @@
 <li>
   <div class="mesbox">
-    <div class="userpic">  <%= image_tag mircoblog.user.avatar_url(:normal) || image_url("head.png") if mircoblog.user.avatar  %></div>
+    <div class="userpic">  <%= image_tag mircoblog.user.avatar_url(:normal) || asset_path('head.png') if mircoblog.user.avatar  %></div>
     <div class="username"><strong><a href=""><%= mircoblog.user.username %></a> </strong></div>
     <div class="usercnt"><%=mircoblog.sharetext%></div>
     <div class="pubInfo">
-      <div class="attime"><%= mircoblog.created_at %></div>
+      <div class="attime"><%= time_ago_in_words(mircoblog.created_at) %></div>
       <div class="commentbtn"><a  data-toggle="collapse" href="#collComment<%=mircoblog.id%>" aria-expanded="false" aria-controls="collapseExample">
        评论
       </a>
@@ -12,6 +12,6 @@
     </div>
   </div>
   <hr/>
-  <%= render partial:'comments/mircoblogcomments',locals:{mircoblog:mircoblog}%>
+  <%= render partial:'comments/mircoblogcomments',locals:{mircoblog:mircoblog,count:count}%>
 </li>
 

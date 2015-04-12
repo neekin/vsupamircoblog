@@ -4,7 +4,7 @@
     <div class="username"><strong><a href="">neekin</a> </strong></div>
     <div class="usercnt"><%= comment.comment%></div>
     <div class="pubInfo">
-      <div class="attime"><%= comment.created_at%></div>
+      <div class="attime"><%=time_ago_in_words(comment.created_at)%></div>
     </div>
   </div>
   <hr/>

@@ -14,8 +14,7 @@
 }
 body
 {
-  background: #73CFF1 url(/assets/bg.jpg) fixed center top repeat-x;
-
+  background: #73CFF1 url(asset_path('bg.jpg')) fixed center top repeat-x;
 }
 
 .footer
@@ -24,6 +23,7 @@ body
   height: 400px;
   width: 100%;
 }
+
 .notice{
   position: absolute;
   z-index: 1000;

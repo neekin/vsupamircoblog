@@ -1,4 +1,4 @@
-.topmenu {
+.list {
   ul {
     list-style: none;
 
@@ -11,22 +11,49 @@
     a:hover {
       text-decoration: none;
     }
+
   }
 }
 
+.topmenu {
+  @extend .list;
+  line-height: 30px;
+  background: #73cff1 rgba(0, 0, 0, 0.6);
+  height: 30px;
+  li {
+    margin: 0 5px;
+    .msg_icon{
+      //position: absolute;
+      padding: 2px 2px;
+
+      left: 8px;
+      top: -6px;
+      border-radius: 50%;
+      background: #c9394a;
+      color: #fff;
+      font-style: normal;
+      font-size: 6px;
+    }
+  }
+
+  -webkit-box-shadow: -1px 7px 16px -6px rgba(0, 0, 0, 0.56);
+  -moz-box-shadow: -1px 7px 16px -6px rgba(0, 0, 0, 0.56);
+  box-shadow: -1px 7px 16px -6px rgba(0, 0, 0, 0.56);
+}
+
 .nav {
-  @extend .topmenu;
+  @extend .list;
   height: 30px;
   width: 400px;
   .navbtn {
     float: right;
     margin-top: -46px;
-    margin-right: 116px;
+    margin-right: 100px;
   }
   li {
     font-size: 22px;
     a {
-      color:#337ab7;
+      color: #337ab7;
     }
     a:hover {
       color: chocolate;

@@ -1,0 +1,16 @@
+<% if(@mircoblogs.count==10) %>
+var data = '<%= j render partial:'mircoblogs/mircoblogslist',locals:{mircoblogs:@mircoblogs}%>';
+$(".shardlist ul:last").after(data);
+var page =parseInt($(".showten").attr('data-index'));
+page =page+1;
+$(".showten").attr('href','mircoblogs/getMircoblogs.js?page='+page);
+$(".showten").attr('data-index',page);
+<% elsif(@mircoblogs.count>0) %>
+var data = '<%= j render partial:'mircoblogs/mircoblogslist',locals:{mircoblogs:@mircoblogs}%>';
+$(".shardlist ul:last").after(data);
+var page =parseInt($(".showten").attr('data-index'));
+page =page+1;
+$(".showten").attr('href','mircoblogs/getMircoblogs.js?page='+page);
+$(".showten").attr('data-index',page);
+$(".showten").text("所有加载完成");
+<% end %>

@@ -32,16 +32,22 @@ class UsersController < ApplicationController
 
   end
 
+  def info
+    @user = current_user
+  end
+
   def logout
     cookies.delete(:auth_token)
     redirect_to :root
   end
 
   def avatar
-    current_user.avatar=user_params[:pic]
+    current_user.avatar=user_params[:avatar]
     current_user.save!
     redirect_to :root
   end
+
+
 
   private
   def user_params

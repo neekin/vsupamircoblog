@@ -1,13 +1,17 @@
-<div class="topmenu">
-  <ul>
+<div class="topmenu navbar-fixed-top">
+<div class="container ">
+  <ul class="pull-right">
     <% if !current_user %>
         <li><a href="/login">登录</a></li>
         <li><a href="/signup">注册</a></li>
     <% else %>
-        <li><%= link_to current_user.username, "/info" %></li>
-        <li><%= link_to "登出", logout_path %></li>
+        <li><%= link_to raw('<span class="glyphicon glyphicon-user"></span> '+current_user.username), "/info" %></li>
+        <li> <a  href=""><span class="glyphicon glyphicon-envelope"><span class="msg_icon">199</span></span></a></li>
+        <li><%= link_to raw('<span class="glyphicon glyphicon-off"></span>'+"登出"), logout_path %></li>
+
     <% end %>
   </ul>
+</div>
 </div>
 <div class="jumbotron ccccc">
   <div class="container">
@@ -23,7 +27,5 @@
     </div>
 
     <p class="subtitle">分享您的快乐</p>
-
-
   </div>
 </div>

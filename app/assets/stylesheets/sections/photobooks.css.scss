@@ -52,10 +52,10 @@
 .showphotos {
 
      .left{
-       cursor: url(/image/pic_prev.cur), auto;
+       cursor: url(asset_path('pic_prev.cur')), auto;
      }
      .right{
-       cursor: url(/image/pic_next.cur), auto;
+       cursor: url(asset_path('pic_next.cur')), auto;
      }
   .setbookcover{
     height: 32px;

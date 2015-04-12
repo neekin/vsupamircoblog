@@ -1,7 +1,7 @@
 <div class="collapse commentcls" id="collComment<%=mircoblog.id%>" data-mircoblogid="<%=mircoblog.id%>">
   <div class="well">
     <div class="top_c_tx5">
-      评论本条微博,<a href="mircoblog/<%=mircoblog.id%>">共有<%=mircoblog.comments.count%>条评论</a>
+      评论本条微博, <%= link_to "共有"+mircoblog.comments.count.to_s+"评论" ,"/mircoblog/"+mircoblog.id.to_s%>
     </div>
     <% if current_user%>
         <%= form_for(Comment.new(:user_id=>current_user.id,:mircoblog_id =>mircoblog.id),remote:true) do |c| %>
@@ -17,11 +17,11 @@
     <% end %>
     <hr/>
     <div class="comments<%=mircoblog.id%>">
-    <% mircoblog.comments.reverse.take(2).each do |comment| %>
-        <%= render partial:'comments/mircoblogcomment',locals:{comment:comment}%>
+    <% mircoblog.comments.reverse.take(count).each do |comment| %>
+        <%= render partial:'comments/mircoblogcomment',locals:{comment:comment,count:4}%>
     <% end%>
     </div>
     <hr/>
-    <div class="pages">查看所有评论</div>
+    <%= link_to "查看所有评论" ,"/mircoblog/"+mircoblog.id.to_s%>
   </div>
 </div>

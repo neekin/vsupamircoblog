@@ -1,5 +1,5 @@
 <ul>
   <% mircoblogs.each do |mircoblog| %>
-  <%= render partial:'mircoblogs/mircoblog',locals:{mircoblog:mircoblog}%>
+  <%= render partial:'mircoblogs/mircoblog',locals:{mircoblog:mircoblog,count:5}%>
   <% end %>
 </ul>

@@ -18,10 +18,12 @@ Rails.application.routes.draw do
    post 'create_login_session' => 'users#create_login_session'
    get 'logout' =>'users#logout', :as =>'logout'
    post 'avatar/uploadavatar'=>'users#avatar'
+   get 'info' =>'users#info'
    resources :users,only:[:create]
   #mircoblog
-   resources  :mircoblogs
-   get 'mircoblog/:id' => 'mircoblogs#showformid'
+   resources  :mircoblogs,only:[:create]
+   get 'mircoblog/:id' => 'mircoblogs#showformid' ,:as=>'showmircoblog'
+   get 'mircoblogs/getMircoblogs.js' => 'mircoblogs#getmircoblogs'
    #comment
    resources :comments
    post 'comments/photocomments' =>'comments#photocomments'
