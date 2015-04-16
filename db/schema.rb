@@ -11,13 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404184852) do
+ActiveRecord::Schema.define(version: 20150414070507) do
+
+  create_table "atusers", force: true do |t|
+    t.integer  "mircoblog_id"
+    t.integer  "comment_id"
+    t.integer  "from_user_id"
+    t.integer  "at_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.string   "comment"
     t.integer  "mircoblog_id"
     t.integer  "photo_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "follows", force: true do |t|
+    t.integer  "from_user_id"
+    t.integer  "follow_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", force: true do |t|
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.string   "message"
+    t.integer  "msgtype"
+    t.integer  "msgstatu"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,6 +68,19 @@ ActiveRecord::Schema.define(version: 20150404184852) do
     t.integer  "photobook_id"
     t.string   "filename"
     t.string   "original_filename"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pointpraises", force: true do |t|
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_dynamics", force: true do |t|
+    t.integer  "dynamicstype"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

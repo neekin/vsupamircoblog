@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'page#welcome'
 
+   #photobook
    get 'photobook'=> 'page#photobook'
    post 'createphotobook' =>'photobooks#createphotobook'
    post 'photos/uploadphoto' =>'photos#uploadphoto'
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
    post 'create_login_session' => 'users#create_login_session'
    get 'logout' =>'users#logout', :as =>'logout'
    post 'avatar/uploadavatar'=>'users#avatar'
-   get 'info' =>'users#info'
+   get ':username' =>'users#info'
    resources :users,only:[:create]
   #mircoblog
    resources  :mircoblogs,only:[:create]
@@ -27,6 +28,9 @@ Rails.application.routes.draw do
    #comment
    resources :comments
    post 'comments/photocomments' =>'comments#photocomments'
+   #follow
+  get 'follow/user/:id' => 'follows#follow'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

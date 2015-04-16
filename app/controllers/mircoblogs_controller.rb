@@ -1,12 +1,12 @@
 class MircoblogsController < ApplicationController
   def create
-   mircoblog = Mircoblog.new(mircoblog_params)
+    mircoblog = Mircoblog.new(mircoblog_params)
+    mircoblog.user_id =current_user.id
     mircoblog.save
     redirect_to :root
   end
   def getmircoblogs
      page = params[:page].to_i
-
      @mircoblogs= Mircoblog.all.reverse.drop(10*page).take(10)
     respond_to do |format|
       format.js   # { render layout: false }
@@ -17,6 +17,6 @@ class MircoblogsController < ApplicationController
   end
   private
   def mircoblog_params
-    params.require(:mircoblog).permit(:sharetext,:user_id)
+    params.require(:mircoblog).permit(:sharetext)
   end
 end

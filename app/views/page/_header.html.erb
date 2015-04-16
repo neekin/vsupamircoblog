@@ -5,8 +5,8 @@
         <li><a href="/login">登录</a></li>
         <li><a href="/signup">注册</a></li>
     <% else %>
-        <li><%= link_to raw('<span class="glyphicon glyphicon-user"></span> '+current_user.username), "/info" %></li>
-        <li> <a  href=""><span class="glyphicon glyphicon-envelope"><span class="msg_icon">199</span></span></a></li>
+        <li><%= link_to raw('<span class="glyphicon glyphicon-user"></span> '+current_user.username), current_user.username %></li>
+        <!--<li> <a  href=""><span class="glyphicon glyphicon-envelope"><span class="msg_icon">199</span></span></a></li>-->
         <li><%= link_to raw('<span class="glyphicon glyphicon-off"></span>'+"登出"), logout_path %></li>
 
     <% end %>
@@ -15,7 +15,7 @@
 </div>
 <div class="jumbotron ccccc">
   <div class="container">
-    <h1>Hello</h1>
+    <h1>云算盘-轻微博</h1>
 
     <div class="nav"><p>Nothing talk,Enjoy It!</p>
       <div class="navbtn">
